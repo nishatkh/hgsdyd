@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #4a6fdc;
+            --secondary-color: #333;
+            --light-color: #f4f4f8;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+        
+        /* Box Model Example for demonstration */
+        .box-model-example {
+            width: 300px;
+            height: 200px;
+            padding: 20px;
+            border: 5px solid var(--primary-color);
+            margin: 20px auto;
+            background-color: var(--light-color);
+            box-sizing: border-box;
+        }
+        
+        /* Hero Section */
+        #home {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a5ec2;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* About Section */
+        #about {
+            background-color: var(--light-color);
+        }
+        
+        .about-text {
+            font-family: 'Georgia', serif;
+            color: #444;
+            line-height: 1.8;
+        }
+        
+        /* Skills Section */
+        .skill-item {
+            text-align: center;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+        }
+        
+        /* Projects Section */
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-links a {
+            margin-right: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        /* Education Section */
+        .education-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .education-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+        }
+        
+        .education-item:after {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 25px;
+            width: 1px;
+            height: calc(100% - 5px);
+            background-color: var(--primary-color);
+        }
+        
+        .education-item:last-child:after {
+            display: none;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background-color: var(--light-color);
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        .form-control {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 40px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .skill-icon {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
+        /* Navigation */
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            background-color: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">My Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="hero-content">
+                        <img src="/api/placeholder/200/200" alt="Professional Photo" class="profile-img mb-4">
+                        <h1>John Doe</h1>
+                        <p>Web Developer & UI/UX Designer crafting digital experiences with passion and precision</p>
+                        <a href="#projects" class="cta-button">Explore My Work</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2>About Me</h2>
+                    <hr class="w-25 mx-auto">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-5 mb-4 mb-md-0">
+                    <img src="/api/placeholder/500/500" alt="About Me" class="img-fluid rounded">
+                </div>
+                <div class="col-md-7">
+                    <p class="about-text">Hello! I'm John, a passionate web developer and UI/UX designer based in New York. With a background in Computer Science and 3 years of industry experience, I specialize in creating responsive and user-friendly web applications.</p>
+                    
+                    <p class="about-text">I believe that technology should solve real-world problems while providing seamless user experiences. My approach combines technical expertise with creative design thinking to build solutions that not only function flawlessly but also delight users.</p>
+                    
+                    <p class="about-text">When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or hiking in the great outdoors. I'm constantly learning and challenging myself to grow both personally and professionally.</p>
+                    
+                    <div class="mt-4">
+                        <h4>Personal Statement</h4>
+                        <p class="about-text">I am driven by a profound passion for technology and problem-solving. Throughout my journey, I've developed a keen eye for detail and a commitment to creating elegant solutions to complex challenges. My goal is to leverage technology to make a positive impact on people's lives, one line of code at a time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2>My Skills</h2>
+                    <hr class="w-25 mx-auto">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="skill-item">
+                        <i class="fab fa-html5 skill-icon"></i>
+                        <h4 class="skill-name">HTML5</h4>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="skill-item">
+                        <i class="fab fa-css3-alt skill-icon"></i>
+                        <h4 class="skill-name">CSS3</h4>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="skill-item">
+                        <i class="fab fa-js skill-icon"></i>
+                        <h4 class="skill-name">JavaScript</h4>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="skill-item">
+                        <i class="fab fa-react skill-icon"></i>
+                        <h4 class="skill-name">React</h4>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="skill-item">
+                        <i class="fab fa-node-js skill-icon"></i>
+                        <h4 class="skill-name">Node.js</h4>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="skill-item">
+                        <i class="fab fa-bootstrap skill-icon"></i>
+                        <h4 class="skill-name">Bootstrap</h4>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 92%" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2>My Projects</h2>
+                    <hr class="w-25 mx-auto">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card project-card">
+                        <img src="/api/placeholder/500/300" class="card-img-top project-img" alt="Project 1">
+                        <div class="card-body">
+                            <h5 class="card-title">E-commerce Website</h5>
+                            <p class="card-text">A full-stack e-commerce platform built with React, Node.js, and MongoDB, featuring user authentication, product filtering, and payment integration.</p>
+                            <div class="project-links">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#project1Modal"><i class="fas fa-info-circle"></i> Details</a>
+                                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card project-card">
+                        <img src="/api/placeholder/500/300" class="card-img-top project-img" alt="Project 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Task Management App</h5>
+                            <p class="card-text">A responsive task management application with drag-and-drop functionality, task categorization, and progress tracking.</p>
+                            <div class="project-links">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#project2Modal"><i class="fas fa-info-circle"></i> Details</a>
+                                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card project-card">
+                        <img src="/api/placeholder/500/300" class="card-img-top project-img" alt="Project 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Weather Dashboard</h5>
+                            <p class="card-text">An interactive weather dashboard that displays current weather and forecasts for multiple locations using API integration and data visualization.</p>
+                            <div class="project-links">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#project3Modal"><i class="fas fa-info-circle"></i> Details</a>
+                                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modals -->
+    <div class="modal fade" id="project1Modal" tabindex="-1" aria-labelledby="project1ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="project1ModalLabel">E-commerce Website</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="project1Carousel" class="carousel slide mb-4" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/api/placeholder/800/400" class="d-block w-100" alt="Project Screenshot 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/api/placeholder/800/400" class="d-block w-100" alt="Project Screenshot 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/api/placeholder/800/400" class="d-block w-100" alt="Project Screenshot 3">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#project1Carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#project1Carousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <h5>Project Overview</h5>
+                    <p>This full-stack e-commerce platform offers a comprehensive shopping experience with features like user authentication, product filtering, shopping cart functionality, and secure payment processing.</p>
+                    
+                    <h5>Technologies Used</h5>
+                    <ul>
+                        <li>React.js for frontend development</li>
+                        <li>Node.js and Express for backend API</li>
+                        <li>MongoDB for database management</li>
+                        <li>Redux for state management</li>
+                        <li>Stripe API for payment processing</li>
+                        <li>JWT for authentication</li>
+                    </ul>
+                    
+                    <h5>Key Features</h5>
+                    <ul>
+                        <li>User authentication and profile management</li>
+                        <li>Product categorization and advanced filtering</li>
+                        <li>Shopping cart and wishlist functionality</li>
+                        <li>Secure checkout process with Stripe integration</li>
+                        <li>Order tracking and history</li>
+                        <li>Responsive design for all devices</li>
+                    </ul>
+                    
+                    <h5>Challenges and Solutions</h5>
+                    <p>One of the main challenges was implementing real-time inventory management to prevent overselling. I solved this by implementing a reservation system that temporarily holds inventory during checkout and releases it if the purchase isn't completed within a specified timeframe.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-primary">View Live Demo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2>Education</h2>
+                    <hr class="w-25 mx-auto">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="education-item">
+                        <h4>Master of Science in Computer Science</h4>
+                        <p class="text-muted">New York University | 2020 - 2022</p>
+                        <p>Specialized in Web Technologies and User Interface Design. Graduated with honors and a GPA of 3.8/4.0.</p>
+                        <p><strong>Relevant Coursework:</strong> Advanced Web Development, User Experience Design, Database Systems, Mobile Application Development</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Bachelor of Science in Information Technology</h4>
+                        <p class="text-muted">University of California, Los Angeles | 2016 - 2020</p>
+                        <p>Focused on Software Development and Network Security. Dean's List for all semesters.</p>
+                        <p><strong>Relevant Coursework:</strong> Data Structures and Algorithms, Web Programming, System Architecture, Database Management</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Professional Certifications</h4>
+                        <p class="text-muted">Various Institutions | 2019 - Present</p>
+                        <ul>
+                            <li>AWS Certified Developer - Associate (2023)</li>
+                            <li>Google Professional Web Developer Certification (2022)</li>
+                            <li>MongoDB Certified Developer (2021)</li>
+                            <li>Certified Scrum Master (2020)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2>Get In Touch</h2>
+                    <hr class="w-25 mx-auto">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 mb-4 mb-md-0">
+                    <div class="contact-info">
+                        <h4>Contact Information</h4>
+                        <p><i class="fas fa-envelope"></i> johndoe@example.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                        <p><i class="fas fa-map-marker-alt"></i> New York, NY, USA</p>
+                    </div>
+                    <div class="social-links mt-4">
+                        <h4>Connect With Me</h4>
+                        <div class="mt-3">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Send Me a Message</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Subject">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 John Doe. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Box Model Example (Hidden, just for demonstration of CSS box model) -->
+    <div class="box-model-example d-none">
+        <p>This demonstrates the CSS Box Model with content, padding, border, and margin</p>
+    </div>
+
+    
+   
